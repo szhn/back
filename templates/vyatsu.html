@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vyatsu</title>
+    <style>body{background-color: #000000;}
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+        border: 1px solid #dddddd;
+        background-color: #333333;
+        border-radius: 25px;
+        color:#CCCCCC;
+    }
+    .table th {
+        font-weight: bold;
+        padding: 5px;
+        
+        
+        margin-top: 10px;
+    }
+    .table td.time{
+        border-right: 1px solid #dddddd;
+    }
+    .table td {
+        
+        padding: 5px;
+        border-top:1px solid #dddddd;
+        
+        
+        margin-top: 10px;
+    }.table tr {
+        padding: 5px;
+        
+        
+        margin-top: 10px;
+    }</style>
+</head>
+
+<body>
+    {%for i in parse%}
+        
+        <div>
+   <table class="table"><tr><th colspan="2">{{i}}</th></tr>
+    
+    
+    {%for i1 in range(parse[i]|length)%}
+    <tr>
+        <td class="time">{{parse[i][i1]["time"]}}</td>
+    <td>{{parse[i][i1]["name"]}} {{parse[i][i1]["type"]}} {{parse[i][i1]["teacher"]}} {{parse[i][i1]["room"]}}</td>
+    </tr>
+    {%endfor%}
+</table>
+        </div>
+    {%endfor%}
+</body>
+</html>

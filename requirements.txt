@@ -1,0 +1,13 @@
+fastapi
+pymongo
+gunicorn
+uvicorn
+twitch-chat-irc
+AsyncIRCClient==0.1.3
+requests
+bs4
+aiohttp
+fake-useragent
+irc
+Jinja2
+python-multipart

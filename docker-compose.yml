@@ -1,0 +1,37 @@
+version: "2.2"
+
+services:
+  app1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: main_app
+    ports:
+      - "443:443"  # Пробрасываем порт 443 для первого приложения
+    volumes:
+      - .:/app  # Для возможности изменения кода
+      - /etc/letsencrypt/live/szhnserv.ru:/etc/letsencrypt/live/szhnserv.ru:ro
+    environment:
+      GUNICORN_CMD: >-
+        gunicorn -k uvicorn.workers.UvicornWorker main:app
+        --bind=0.0.0.0:443
+        --workers=6
+    restart: always
+
+  app2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tesmessages_app
+    ports:
+      - "1252:1252"  # Пробрасываем порт 1252 для второго приложения
+    volumes:
+      - .:/app  # Для возможности изменения кода
+      - /etc/letsencrypt/live/szhnserv.ru:/etc/letsencrypt/live/szhnserv.ru:ro
+    environment:
+      GUNICORN_CMD: >-
+        gunicorn -k uvicorn.workers.UvicornWorker tesmessages:app
+        --bind=0.0.0.0:1252
+        --workers=1
+        --timeout=3600
+    restart: always

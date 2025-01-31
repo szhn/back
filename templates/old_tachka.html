@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/png" href="https://i.postimg.cc/qvqNKXrr/1.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap" rel="stylesheet">
+        <title>CHATTER - {{channel}} Edition</title>
+        <style>
+            body{
+                background-color: #121212;
+            }
+            .iconContainer {
+	position: absolute;
+	right: 10px;
+    
+	top: calc(50% - 11px);
+}
+.loader {
+    
+	position: relative;
+    top:0px;
+    right:200px;
+	height: 40px;
+	width: 40px;
+	display: inline-block;
+	animation: around 5.4s infinite;
+}
+
+.loader::after, .inputContainer .loader::before {
+	content: "";
+	background: white;
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	border-width: 2px;
+	border-color: #ff6b34 #ff6b34 transparent transparent;
+	border-style: solid;
+	border-radius: 20px;
+	box-sizing: border-box;
+	top: 0;
+	left: 0;
+	animation: around 0.7s ease-in-out infinite;
+}
+
+.loader::after {
+	animation: around 0.7s ease-in-out 0.1s infinite;
+	background: transparent;
+}
+
+@keyframes around {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+        </style>
+
+<style>
+    .dropbtn {
+        
+        background-color: transparent;
+        padding: 5px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #b0b0b28c;
+    }
+    
+    #myInput {
+        border-box: box-sizing;
+        
+        background-color: #1e1e1e;
+        
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        color:#fff;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid #3c3c3c;
+    }
+    
+    #myInput:focus {outline: 3px solid #fffefe;}
+    #emote{
+        padding: 5px; 
+        border: none;
+        background-color: transparent;
+    }
+    #emote:hover{
+        background-color:#dcdbdc2b;
+    }
+    .dropdownn {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropdownn-content {
+        display: none;
+        position: absolute;
+        background-color: #121212;
+        min-width: 230px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        z-index: 1;
+    }
+    
+    .dropdownn-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdownn a:hover {background-color: #434343;}
+    
+    .show {display: block;}
+    </style>
+
+
+
+
+    </head>
+    <body>
+        <a href="/twitch/tachka?token={{token}}" style="display: flex;text-decoration: none;margin-top: 10px;margin-left: 10px;font: 1.5rem 'Rubik Doodle Shadow';"><img src="https://i.postimg.cc/qvqNKXrr/1.png"><label style="color:#fff;margin-top: 10px;text-decoration: none;margin-left: 5px;" >
+            CHATTER
+        </label></a>
+
+<div style="display: flex;">
+    <div id="twitch-embed" style="margin-left: 70px;margin-top: 10px;"></div>
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    <form method="post" target="dummyframe" action="https://szhnserv.ru:{{port}}/twitch/tachka">
+        <div style="display: grid;">
+    <input id="acc_search" onkeyup="filterFunctionaccs()" style="background-color:#121212;color: #fff;height: 40px;border-radius: 5px;border: 7px #fff;" placeholder="Поиск по нику">
+    <select name="nickacc" id="AccsValue" size="20" class="scroll" style="background-color:#121212">
+        
+    </select>
+</div>
+    <div style="display:grid">
+    <div style="display:flex;color:#fff">
+        <input type="checkbox" id="uniqacc" >
+        <label for="uniqacc" >Использовать определенный акк </label>
+        
+    </div>
+    <div>
+    <button class="btn btn-dark" type="button"  id="AccsConnect">Начать стрим</button></div>
+</div>
+</div>
+
+    <!-- Load the Twitch embed JavaScript file -->
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+    <!-- Create a Twitch.Embed object that will render within the "twitch-embed" element -->
+    <script type="text/javascript">
+      new Twitch.Embed("twitch-embed", {
+        width: 1400,
+        height: 600,
+        time:"0h0m0s",
+        channel: "{{channel}}",
+        // Only needed if this page is going to be embedded on other websites
+        parent: ["embed.example.com", "othersite.example.com"]
+      });
+    </script>
+
+<input type="text" name="token" value="{{token}}" style="display:none"required>
+<input type="text" name="channel" value="{{channel}}" style="display:none"required>    
+<div style="display: flex;">
+<input type="text" class="form-control" style="background-color: #1e1e1e;color:#fff;;border-color:#303030;width: 50%;" id="msg" name="msg" placeholder="Введите текст" required>
+<div class="dropdownn">
+    <button onclick="myFunction()" class="dropbtn" type="button"><svg style="width: 30px;height: 30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75ZM1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM8.39747 15.5534C8.64413 15.2206 9.11385 15.1508 9.44661 15.3975C10.175 15.9373 11.0541 16.25 12 16.25C12.9459 16.25 13.825 15.9373 14.5534 15.3975C14.8862 15.1508 15.3559 15.2206 15.6025 15.5534C15.8492 15.8862 15.7794 16.3559 15.4466 16.6025C14.4742 17.3233 13.285 17.75 12 17.75C10.715 17.75 9.5258 17.3233 8.55339 16.6025C8.22062 16.3559 8.15082 15.8862 8.39747 15.5534Z" fill="#f5f5f5"></path> <path d="M16 10.5C16 11.3284 15.5523 12 15 12C14.4477 12 14 11.3284 14 10.5C14 9.67157 14.4477 9 15 9C15.5523 9 16 9.67157 16 10.5Z" fill="#f5f5f5"></path> <path d="M10 10.5C10 11.3284 9.55229 12 9 12C8.44772 12 8 11.3284 8 10.5C8 9.67157 8.44772 9 9 9C9.55229 9 10 9.67157 10 10.5Z" fill="#f5f5f5"></path> </g></svg></button>
+      <div id="myDropdown" class="dropdownn-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        {%for i in emotes %}
+<button type="button" title="{{i}}"  id="emote" onclick="addsmile('{{i}}')"><img src={{emotes[i]}} ></button>
+{% endfor %}
+      </div>
+    </div>
+</div>
+<button class="btn btn-dark" type="submit" class="btn btn-dark" style="background-color: #1e1e1e;color:#fff;;border-color:#303030;" id="SendMsg">Отправить</button>
+</form>
+<div style="display: grid;">
+<div style="display: flex;">
+    {%for file in files %}
+    {% if loop.index % 3 == 1 %}
+                    <div>
+                {% endif %}
+                <iframe name="{{file}}" id="{{file}}" style="display: none;"></iframe>
+    <form method="post" target="{{file}}" action="https://szhnserv.ru:{{port}}/twitch/tachka">
+    <input type="text" name="token" value="{{token}}" style="display:none"required>
+    <input type="text" name="channel" value="{{channel}}" style="display:none"required>    
+    <input type="text" name="msg" value="{{file}}" style="display:none"required>  
+    <button class="btn btn-dark" type="submit" class="btn btn-dark" style="background-color: #1e1e1e;color:#fff;;border-color:#303030;width: 100%;">{{file}}</button>
+    </form>
+                {% if loop.index % 3 == 0 or loop.last %}
+                    </div>
+                {% endif %}
+    
+    {% endfor %}
+</div>
+<div style="display: flex;">
+<input type="text" id="kd" value="" placeholder="Введите кд на отправку" > 
+<button class="btn btn-dark" type="submit" class="btn btn-dark" style="background-color: #1e1e1e;color:#fff;;border-color:#303030;" id="startButton">Начать</button>
+
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
+    
+    <script>
+         function addsmile(smile){
+    let msg= document.getElementById("msg");
+    msg.value+=smile+" "
+
+
+}
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function filterFunctionaccs() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("acc_search");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("AccsValue");
+    a = div.getElementsByTagName("option");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("button");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].title.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+        let AccConnectButton = document.getElementById("AccsConnect");
+        let StartStream = false;
+        AccConnectButton.addEventListener("click", () => {  StartStream = !StartStream;
+    if (StartStream)  {
+      AccConnectButton.innerText="Закончить стрим";
+    }
+    else {    AccConnectButton.innerText="Начать стрим";
+    let AccsValue= document.getElementById("AccsValue");
+   
+    let accstext=AccsValue.value;
+    AccsValue.innerHTML = "";
+    var formDataAccs = new FormData();
+    formDataAccs.append('token', '{{token}}');
+    
+      
+    formDataAccs.append('count', "all exit");
+       
+                  var xhr = new XMLHttpRequest();
+                  xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+              var responseText = xhr.responseText;
+              responseText=responseText.replace("\"","");
+              responseText=responseText.replace("\"","");
+              AccsValue.value="Подключено аккаунтов: "+(responseText);
+          } else {
+              console.error("Error: " + xhr.status);
+          }
+      }
+  };
+            xhr.open("POST", "https://szhnserv.ru:{{port}}/api/twitch/connect", true);        
+            var formDataString
+            
+            xhr.send(formDataAccs);  
+          
+  
+    }});
+            
+          
+        </script>  
+    <script>
+        let AccsValues= document.getElementById("AccsValue");
+      var formDataUpdate = new FormData();
+      formDataUpdate.append('token', '{{token}}');
+      formDataUpdate.append('channel', '{{channel}}');
+      intervalUpdate = setInterval(() => {      
+        {       let uniqacc= document.getElementById("uniqacc");
+        console.log(uniqacc.checked)
+           var xhr = new XMLHttpRequest();
+           xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var responseText = JSON.parse(xhr.responseText);
+                AccsValue.innerHTML = "";
+                console.log(responseText)
+                responseText.forEach(option => {
+                const optionElement = document.createElement("option");
+                optionElement.value = option.nick;
+                if (option.vip){
+                    optionElement.text = "VIP:"+option.nick;
+                }
+                else{
+                    optionElement.text = option.nick;
+                    
+                }
+                optionElement.style.cssText="background-color:#121212; color: white;height:20px"
+                AccsValues.appendChild(optionElement);
+            })
+            } else {
+                console.error("Error: " + xhr.status);
+            }
+        }}
+        if (StartStream && !uniqacc.checked){
+          xhr.open("POST", "https://szhnserv.ru:{{port}}/api/twitch/check_connect", true);        
+          var formDataString
+          xhr.send(formDataUpdate);}     }
+      }, 5 * 1000);  
+    </script>
+    
+    <script>
+      let SendMsgButton=document.getElementById("SendMsg");
+      let MsgText=document.getElementById("msg");
+      SendMsgButton.addEventListener("click", () => {
+        setTimeout(() => {  msg.value="";MsgText.focus(); }, 10);
+        
+
+
+      })
+    </script>
+    
+    
+
+
+
+
+
+
+
+<script>
+
+let start = false;let startButton = document.getElementById("startButton");
+let kd = document.getElementById("kd");let interval;
+
+var formData = new FormData();
+  formData.append('token', '{{token}}');
+  formData.append('channel', '{{channel}}')
+  formData.append('msg', 'танцы.txt')
+startButton.addEventListener("click", () => {  start = !start;
+  if (start)  {
+    startButton.innerText="Остановить"
+    interval = setInterval(() => {      if (start)
+      {       
+         var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://szhnserv.ru:{{port}}/twitch/tachka", true);        
+        var formDataString
+        xhr.send(formData);      }
+    }, kd.value * 1000);  }
+  else {    startButton.innerText="Начать";
+    clearInterval(interval);
+  }});
+</script>    
+
+<script>
+
+  let ChangeProxyButton = document.getElementById("ChangeProxyButton");
+  let ProxyText= document.getElementById("ProxyText");
+  var formDataProxy = new FormData();
+  formDataProxy.append('token', '{{token}}');
+    
+    ChangeProxyButton.addEventListener("click", () => {  
+   
+      
+     
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+            var responseText = xhr.responseText;
+            console.log(responseText);
+            responseText=responseText.replace("\"","");
+            responseText=responseText.replace("\"","");
+            ProxyText.value=responseText.replace("\"","");
+        } else {
+            console.error("Error: " + xhr.status);
+        }
+    }
+};
+          xhr.open("POST", "https://szhnserv.ru/twitch/tachka/change_proxy", true);        
+          var formDataString
+          xhr.send(formDataProxy);  
+              
+          })
+      
+    
+  </script>   
+  <script>
+    let AccsValue= document.getElementById("AccsValue");
+
+    var formDataUpdate = new FormData();
+    formDataUpdate.append('token', '{{token}}');
+    formDataUpdate.append('channel', '{{channel}}');
+    document.addEventListener('DOMContentLoaded', function() {
+        
+      {       
+         var xhr = new XMLHttpRequest();
+         
+         xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+            var responseText = xhr.responseText;
+            responseText=responseText.replace("\"","");
+            responseText=responseText.replace("\"","");
+            AccsValue.value="Подключено аккаунтов: "+(responseText);
+        } else {
+            console.error("Error: " + xhr.status);
+        }
+    }}
+        xhr.open("POST", "https://szhnserv.ru:{{port}}/api/twitch/count_connections", true); 
+        AccsValues.value="Проверка подключения"       
+        var formDataString
+        xhr.send(formDataUpdate);      }
+    });  
+  </script> 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Элемент input
+        let SendMsgButtonZnach=document.getElementById("SendMsg");
+        var inputField = document.getElementById('msg');
+    
+        // История введенных значений
+        var inputHistory = [];
+        var historyIndex = -1;
+    
+        // Обработчик события нажатия клавиши
+        inputField.addEventListener('keydown', function (event) {
+            if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                showPreviousValue();
+            } else if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                showNextValue();
+            }
+        });
+    
+        // Функция отображения предыдущего значения
+        function showPreviousValue() {
+            if (historyIndex < inputHistory.length - 1) {
+                historyIndex++;
+                setInputValueFromHistory();
+            }
+        }
+    
+        // Функция отображения следующего значения
+        function showNextValue() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                setInputValueFromHistory();
+            } else if (historyIndex === 0) {
+                // Если historyIndex равен 0, очистите поле ввода
+                historyIndex = -1;
+                inputField.value = '';
+            }
+        }
+    
+        // Функция установки значения из истории в поле ввода
+        function setInputValueFromHistory() {
+            inputField.value = inputHistory[historyIndex];
+        }
+    
+        // Обработчик события ввода текста
+        SendMsgButtonZnach.addEventListener('click', function () {
+            // Добавление текущего значения в историю
+            inputHistory.unshift(inputField.value);
+            // Сброс индекса истории
+            historyIndex = -1;
+        });
+    });
+    </script>
+
+</body>
+
+
+    </html>

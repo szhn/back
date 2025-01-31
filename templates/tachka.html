@@ -1,0 +1,882 @@
+<html class="common" lang="ru"><plasmo-csui></plasmo-csui><head>
+    <title>CHATTER - {{channel}} Edition
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap" rel="stylesheet">
+<style>
+    .dropbtn {
+        
+        background-color: transparent;
+        padding: 15px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #72468e8c;
+    }
+    
+    #myInput {
+        border-box: box-sizing;
+        background-image: url('searchicon.png');
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    #myInput:focus {outline: 3px solid #ddd;}
+    
+    .dropdownn {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropdownn-content {
+        display: none;
+        position: absolute;
+        background-color: #f6f6f6;
+        min-width: 230px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        z-index: 1;
+    }
+    
+    .dropdownn-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdownn a:hover {background-color: #ddd;}
+    
+    .show {display: block;}
+    </style>
+<style type="text/css">.vue-slider-dot{position:absolute;-webkit-transition:all 0s;transition:all 0s;z-index:5}.vue-slider-dot:focus{outline:none}.vue-slider-dot-tooltip{position:absolute;visibility:hidden}.vue-slider-dot-hover:hover .vue-slider-dot-tooltip,.vue-slider-dot-tooltip-show{visibility:visible}.vue-slider-dot-tooltip-top{top:-10px;left:50%;-webkit-transform:translate(-50%,-100%);transform:translate(-50%,-100%)}.vue-slider-dot-tooltip-bottom{bottom:-10px;left:50%;-webkit-transform:translate(-50%,100%);transform:translate(-50%,100%)}.vue-slider-dot-tooltip-left{left:-10px;top:50%;-webkit-transform:translate(-100%,-50%);transform:translate(-100%,-50%)}.vue-slider-dot-tooltip-right{right:-10px;top:50%;-webkit-transform:translate(100%,-50%);transform:translate(100%,-50%)}</style><style type="text/css">.vue-slider-marks{position:relative;width:100%;height:100%}.vue-slider-mark{position:absolute;z-index:1}.vue-slider-ltr .vue-slider-mark,.vue-slider-rtl .vue-slider-mark{width:0;height:100%;top:50%}.vue-slider-ltr .vue-slider-mark-step,.vue-slider-rtl .vue-slider-mark-step{top:0}.vue-slider-ltr .vue-slider-mark-label,.vue-slider-rtl .vue-slider-mark-label{top:100%;margin-top:10px}.vue-slider-ltr .vue-slider-mark{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.vue-slider-ltr .vue-slider-mark-step{left:0}.vue-slider-ltr .vue-slider-mark-label{left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.vue-slider-rtl .vue-slider-mark{-webkit-transform:translate(50%,-50%);transform:translate(50%,-50%)}.vue-slider-rtl .vue-slider-mark-step{right:0}.vue-slider-rtl .vue-slider-mark-label{right:50%;-webkit-transform:translateX(50%);transform:translateX(50%)}.vue-slider-btt .vue-slider-mark,.vue-slider-ttb .vue-slider-mark{width:100%;height:0;left:50%}.vue-slider-btt .vue-slider-mark-step,.vue-slider-ttb .vue-slider-mark-step{left:0}.vue-slider-btt .vue-slider-mark-label,.vue-slider-ttb .vue-slider-mark-label{left:100%;margin-left:10px}.vue-slider-btt .vue-slider-mark{-webkit-transform:translate(-50%,50%);transform:translate(-50%,50%)}.vue-slider-btt .vue-slider-mark-step{top:0}.vue-slider-btt .vue-slider-mark-label{top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.vue-slider-ttb .vue-slider-mark{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.vue-slider-ttb .vue-slider-mark-step{bottom:0}.vue-slider-ttb .vue-slider-mark-label{bottom:50%;-webkit-transform:translateY(50%);transform:translateY(50%)}.vue-slider-mark-label,.vue-slider-mark-step{position:absolute}</style><style type="text/css">.vue-slider{position:relative;-webkit-box-sizing:content-box;box-sizing:content-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:block;-webkit-tap-highlight-color:rgba(0,0,0,0)}.vue-slider-rail{position:relative;width:100%;height:100%;-webkit-transition-property:width,height,left,right,top,bottom;transition-property:width,height,left,right,top,bottom}.vue-slider-process{position:absolute;z-index:1}</style><style>@import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/styles.css");</style><link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,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Iv8iIiL/l5eX////////////Tk5O/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIiWSEhIZsiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yoqKv9qamr/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/19fX//6+vr///////7+/v82Njb/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8hISGbIiIizCIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yYmJv+JiYn/+vr6////////////vr6+/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIswhISHsIiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv9hYWH/2tra/////////////////+np6f87Ozv/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/ISEh7CEhIfwiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv9GRkb/wsLC///////////////////////Y2Nj/QEBA/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8hISH8ISEh/CIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8kJCT/jo6O//r6+v/////////////////29vb/j4+P/ygoKP8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yEhIfwhISHsIiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/JCQk/7S0tP/////////////////7+/v/pqam/zk5Of8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/ISEh7CIiIswiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv+NjY3/////////////////urq6/0JCQv8iIiL/IiIi/yIi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/////////////2tra/8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8jIyPlJSUlIh8fH0kiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/NDQ0/8LCwv8kJCT/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/y8vL/+jo6P//Pz8/////////////v7+/1BQUP8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/Hx8fSSEhIYUiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/JSUl/z09Pf8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/PDw8/6SkpP/39/f/////////////////4ODg/ykpKf8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/ISEhhSIiIrUiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yQkJP9fX1//1dXV//z8/P/////////////////9/f3/dnZ2/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIitSIiItkiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8oKCj/QEBA/6Ojo//39/f///////////////////////39/f+zs7P/MDAw/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi2SIiIvAiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/0FBQf+SkpL/4+Pj/////////////////////////////////7u7u/9DQ0P/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi8CIiIv0iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8oKCj/f39//+Li4v/6+vr////////////////////////////6+vr/mpqa/zMzM/8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/SIiIv0iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IyMj/0ZGRv+6urr//Pz8////////////////////////////+vr6/9nZ2f9ra2v/JSUl/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/SIiIvAiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8mJib/bm5u/9zc3P////////////////////////////39/f/Y2Nj/i4uL/zw8PP8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi8CIiItkiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yMjI/9xcXH/7Ozs////////////////////////////8/Pz/42Njf8+Pj7/JSUl/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi2SIiIrUiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/0VFRf/e3t7//////////////////////+/v7/+srKz/Ozs7/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIitSEhIYUiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/6qqqv/////////////////8/Pz/wcHB/2NjY/8oKCj/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/ywsLP80NDT/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/ISEhhR8fH0kiIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/NDQ0//j4+P////////////z8/P+oqKj/ODg4/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/2FhYf+BgYH/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/Hx8fSSUlJSIjIyPlIiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/XV1d/////////////////8rKyv8zMzP/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/5GRkf+NjY3/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8jIyPlJSUlIiAgIBAhISGxIiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/Z2dn/////////////////1lZWf8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/JCQk/9LS0v+NjY3/IiIi/yIi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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEJCQkMSMjI3UhISGxIyMj5SIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yIiIv8iIiL/IiIi/yMjI+UhISGxIyMjdSQkJDIAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIgICAQJSUlIh8fH0kgICCGIiIitSIiItkiIiLwIiIi/SIiIv0iIiLwIiIi2SIiIrUhISGFHx8fSSUlJSIeHh4RAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="></head>
+<link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}" media="all">
+<body class="common__body" style="">
+    <div class="app" id="chat_app">
+        <header class="header offset">
+            <input class="header__menu-activation" id="menu-activation" type="checkbox">
+            <div class="header__logo"><a href="/twitch/tachka?token={{token}}"><img class="header__logo-img" src="https://i.postimg.cc/qvqNKXrr/1.png" alt=""></a></div>
+            <label class="header__menu-btn" for="menu-activation"><i class="icon icon-menu"></i><i class="icon icon-close"></i></label>
+        </header>
+        <div class="notification-popups">
+            <div class="notification-popup layout"><a class="notification-popup__close" href="" data-close=""><i class="icon icon-close"></i></a>
+                <div class="notification-popup__bg"><i class="icon" data-icon=""></i></div>
+                <div class="notification-popup__title" data-title=""></div>
+                <p data-text=""></p>
+            </div>
+        </div>
+        <main class="main">
+            <section class="section _gap chat-page inner">
+                <div class="accordionItem _active _animation">
+                    <div class="section__title accordionBtn">
+                        <h1 class="h1">Трансляция</h1>
+                    </div>
+                    <div class="translation accordionDropdown _small-video">
+                        <div class="translation__video"></div>
+                        <div class="translation__group _gap-20 _chat">
+                            <div class="translation__group">
+                                <h2 class="h2">Чат трансляции</h2>
+                                <iframe id="twitch-chat-embed" src="https://www.twitch.tv/embed/{{channel}}/chat?darkpopout&parent=szhnserv.ru" height="100%" width="100%" data-iframe="chat"></iframe>
+                            </div>
+                        </div>
+                        <div class="translation__group _gap-20 _account">
+                            <div class="translation__group accordionItem _active _animation">
+                                <div class="translation__title accordionBtn">
+                                    <h2 class="h2">Активный аккаунт</h2>
+                                </div>
+                                <div class="translation__drop accordionDropdown">
+                                    <div class="translation__group _bg _gap-20">
+                                        <div class="translation__video _alt">
+                                            <div class="translation__btn"></div>
+                                            <iframe src="https://player.twitch.tv/?channel={{channel}}&amp;parent=szhnserv.ru" frameborder="0"  scrolling="yes" height="100%" width="100%" data-iframe="video"></iframe>
+                                            <div class="translation__info">
+                                                <div class="translation__info-i"><span data-viewers="">0</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="account__main _single" data-mainacc="">
+                                            <div class="account__statuses" data-mainacc-statuses=""></div>
+                                            <div class="account__name" data-mainacc-login=""></div>
+                                            <div class="account__balance"><i class="icon icon-coin"></i><span data-mainacc-points=""></span></div>
+                                        </div>
+                                        <div class="accordionItem _active _animation">
+                                            
+                                            <div class="translation__title h3 accordionBtn">Отправить в чат</div>
+                                            <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+                                            <form class="translation__drop _inner-offset accordionDropdown" data-send-mes="" id="MSGSEND" method="post" target="dummyframe" action="https://szhnserv.ru:{{port}}/twitch/tachka">
+                                                <input type="text" class="input _textarea" id="msg" name="msg" placeholder="Введите текст" required>
+                                                <div class="dropdownn">
+                                                    <button onclick="myFunction()" class="dropbtn" type="button"><img src="https://www.svgrepo.com/show/529896/smile-circle.svg" style="width: 30px;height: 30px;"></button>
+                                                      <div id="myDropdown" class="dropdownn-content">
+                                                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                                                        {%for i in emotes %}
+                                                <button type="button" title="{{i}}" style="padding: 5px;" onclick="addsmile('{{i}}')"><img src={{emotes[i]}} ></button>
+                                                {% endfor %}
+                                                      </div>
+                                                    </div>
+                                                <input type="text" name="token" value="{{token}}" style="display:none"required>
+<input type="text" name="channel" value="{{channel}}" style="display:none"required> 
+                                                <div class="translation__btns">
+                                                    <button class="button _low" type="submit" id="SendMsg">Отправить</button>
+                                                    <label class="toggle _alt-bg" form="no-exist">
+                                                        <input class="toggle__input" type="checkbox" id="uniqacc" name="use_acc"><span class="toggle__mask" ></span><span class="toggle__label"></span>Использовать определенный аккаунт</span>
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="accordionItem _active _animation">
+                                            <div class="translation__title h3 accordionBtn">Отправить сообщение из списка</div>
+                                            <div class="translation__drop _inner-offset accordionDropdown">
+                                                <div class="translation__btns">
+                                                    
+                                                        {%for file in files %}
+                                                        {% if loop.index % 3 == 1 %}
+                                                                        <div>
+                                                                    {% endif %}
+                                                                    <iframe name="{{file}}" id="{{file}}" style="display: none;"></iframe>
+                                                        <form method="post" target="{{file}}" action="https://szhnserv.ru:{{port}}/twitch/tachka">
+                                                        <input type="text" name="token" value="{{token}}" style="display:none"required>
+                                                        <input type="text" name="channel" value="{{channel}}" style="display:none"required>    
+                                                        <input type="text" name="msg" value="{{file}}" style="display:none"required>  
+                                                        <button class="btn1" type="submit">{{file}}</button>
+                                                        </form>
+                                                                    {% if loop.index % 3 == 0 or loop.last %}
+                                                                        </div>
+                                                                    {% endif %}
+                                                        
+                                                        {% endfor %}
+                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="translation__group _accounts accordionItem _active _animation">
+                            <div class="translation__title _between">
+                                <h2 class="h2 accordionBtn">Список аккаунтов</h2>
+                            </div>
+                            <input class="input _search" type="text" placeholder="Поиск аккаунта" id="acc_search" data-search-acc="AccsValue" onkeyup="filterFunctionaccs()">
+                            <div class="translation__drop accordionDropdown">
+                                <div class="account-list _h-limited">
+                                    <label>
+                                    <select class="account-list _h-limited" id="AccsValue" size="14" name="nickacc" form="MSGSEND">
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                        <option>Аккаунт не подключен</option>
+                                </select>
+                                </label>
+                                <button class="button _low" id="AccsConnect">Подключить акки</button>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="js/_swiper-bundle.min.js" defer=""></script>
+        <script src="js/gen-script.min.js" defer=""></script>
+        <script src="js/preload-scripts.min.js" defer=""></script>
+        <!--script(src="js/script.js" defer="")-->
+        <script src="js/chat/_common.min.js" defer=""></script>
+        <script src="js/chat/_chat.js" defer=""></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+            
+    <!-- Create a Twitch.Embed object that will render within the "twitch-embed" element -->
+
+    <script type="text/javascript">
+      new Twitch.Embed("twitch-embed", {
+        width: 1440,
+        height: 657,
+        time:"0h0m0s",
+        channel: "{{channel}}",
+        // Only needed if this page is going to be embedded on other websites
+        parent: ["embed.example.com", "othersite.example.com"]
+      });
+    </script>
+    <script>
+        let AccConnectButton = document.getElementById("AccsConnect");
+        let StartStream = false;
+        AccConnectButton.addEventListener("click", () => {  StartStream = !StartStream;
+    if (StartStream)  {
+      AccConnectButton.innerText="Закончить стрим";
+    }
+    else {    AccConnectButton.innerText="Начать стрим";
+    let AccsValue= document.getElementById("AccsValue");
+   
+    let accstext=AccsValue.value;
+    AccsValue.innerHTML = "";
+    var formDataAccs = new FormData();
+    formDataAccs.append('token', '{{token}}');
+    
+      
+    formDataAccs.append('count', "all exit");
+       
+                  var xhr = new XMLHttpRequest();
+                  xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+              var responseText = xhr.responseText;
+              responseText=responseText.replace("\"","");
+              responseText=responseText.replace("\"","");
+              AccsValue.value="Подключено аккаунтов: "+(responseText);
+          } else {
+              console.error("Error: " + xhr.status);
+          }
+      }
+  };
+            xhr.open("POST", "https://szhnserv.ru:{{port}}/api/twitch/connect", true);        
+            var formDataString
+            
+            xhr.send(formDataAccs);  
+          
+  
+    }});
+            
+          
+        </script>  
+        <!-- Load the Twitch embed JavaScript file -->
+       
+    <script>
+        let AccsValues= document.getElementById("AccsValue");
+      var formDataUpdate = new FormData();
+      formDataUpdate.append('token', '{{token}}');
+      formDataUpdate.append('channel', '{{channel}}');
+      intervalUpdate = setInterval(() => {      
+        {       let uniqacc= document.getElementById("uniqacc");
+        console.log(uniqacc.checked)
+           var xhr = new XMLHttpRequest();
+           xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var responseText = JSON.parse(xhr.responseText);
+                AccsValue.innerHTML = "";
+                console.log(responseText)
+                responseText.forEach(option => {
+                const optionElement = document.createElement("option");
+                optionElement.value = option.nick;
+                if (option.vip){
+                    optionElement.text = "VIP:"+option.nick;
+                }
+                else{
+                    optionElement.text = option.nick;
+                }
+                
+                AccsValues.appendChild(optionElement);
+            })
+            } else {
+                console.error("Error: " + xhr.status);
+            }
+        }}
+        if (StartStream && !uniqacc.checked){
+          xhr.open("POST", "https://szhnserv.ru:{{port}}/api/twitch/check_connect", true);        
+          var formDataString
+          xhr.send(formDataUpdate);}     }
+      }, 5 * 1000);  
+
+      function addsmile(smile){
+    let msg= document.getElementById("msg");
+    msg.value+=smile+" "
+
+
+}
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("button");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].title.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+
+function filterFunctionaccs() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("acc_search");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("AccsValue");
+    a = div.getElementsByTagName("option");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+    </script>
+
+<script>
+    // Функция для выполнения поиска ников
+    function searchAccounts() {
+        // Получаем значение для поиска
+        var input = document.getElementById("AccsValue");
+        var filter = input.value.toUpperCase();
+        var options = document.getElementById("AccsValue").getElementsByTagName("option");
+
+        // Проходимся по всем опциям списка аккаунтов
+        for (var i = 0; i < options.length; i++) {
+            var option = options[i];
+            var textValue = option.nick || option.value;
+
+            // Если текст опции содержит введенное значение для поиска, то оставляем опцию видимой, иначе скрываем ее
+            if (textValue.toUpperCase().indexOf(filter) > -1) {
+                option.style.display = "";
+            } else {
+                option.style.display = "none";
+            }
+        }
+    }
+
+    // Обработчик события ввода в поле поиска
+    document.querySelector('input._search').addEventListener('input', function() {
+        searchAccounts();
+    });
+</script>
+    
+    <script>
+      let SendMsgButton=document.getElementById("SendMsg");
+      let MsgText=document.getElementById("msg");
+      SendMsgButton.addEventListener("click", () => {
+        setTimeout(() => {  msg.value="";MsgText.focus(); }, 10);
+        
+
+
+      })
+    </script>
+    
+    
+
+
+
+
+
+
+
+<script>
+
+let start = false;let startButton = document.getElementById("startButton");
+let kd = document.getElementById("kd");let interval;
+
+var formData = new FormData();
+  formData.append('token', '{{token}}');
+  formData.append('channel', '{{channel}}')
+  formData.append('msg', 'танцы.txt')
+startButton.addEventListener("click", () => {  start = !start;
+  if (start)  {
+    startButton.innerText="Остановить"
+    interval = setInterval(() => {      if (start)
+      {       
+         var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://szhnserv.ru:{{port}}/twitch/tachka", true);        
+        var formDataString
+        xhr.send(formData);      }
+    }, kd.value * 1000);  }
+  else {    startButton.innerText="Начать";
+    clearInterval(interval);
+  }});
+</script>    
+
+<script>
+
+  let ChangeProxyButton = document.getElementById("ChangeProxyButton");
+  let ProxyText= document.getElementById("ProxyText");
+  var formDataProxy = new FormData();
+  formDataProxy.append('token', '{{token}}');
+    
+    ChangeProxyButton.addEventListener("click", () => {  
+   
+      
+     
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+            var responseText = xhr.responseText;
+            console.log(responseText);
+            responseText=responseText.replace("\"","");
+            responseText=responseText.replace("\"","");
+            ProxyText.value=responseText.replace("\"","");
+        } else {
+            console.error("Error: " + xhr.status);
+        }
+    }
+};
+          xhr.open("POST", "https://szhnserv.ru/twitch/tachka/change_proxy", true);        
+          var formDataString
+          xhr.send(formDataProxy);  
+              
+          })
+      
+    
+  </script>   
+  <script>
+    let AccsValue= document.getElementById("AccsValue");
+
+    var formDataUpdate = new FormData();
+    formDataUpdate.append('token', '{{token}}');
+    formDataUpdate.append('channel', '{{channel}}');
+    document.addEventListener('DOMContentLoaded', function() {
+        
+      {       
+         var xhr = new XMLHttpRequest();
+         
+         xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+            var responseText = xhr.responseText;
+            responseText=responseText.replace("\"","");
+            responseText=responseText.replace("\"","");
+            AccsValue.value="Подключено аккаунтов: "+(responseText);
+        } else {
+            console.error("Error: " + xhr.status);
+        }
+    }}
+        xhr.open("POST", "https://szhnserv.ru:{{port}}/api/twitch/count_connections", true); 
+        AccsValues.value="Проверка подключения"       
+        var formDataString
+        xhr.send(formDataUpdate);      }
+    });  
+  </script> 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Элемент input
+        let SendMsgButtonZnach=document.getElementById("SendMsg");
+        var inputField = document.getElementById('msg');
+    
+        // История введенных значений
+        var inputHistory = [];
+        var historyIndex = -1;
+    
+        // Обработчик события нажатия клавиши
+        inputField.addEventListener('keydown', function (event) {
+            if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                showPreviousValue();
+            } else if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                showNextValue();
+            }
+        });
+    
+        // Функция отображения предыдущего значения
+        function showPreviousValue() {
+            if (historyIndex < inputHistory.length - 1) {
+                historyIndex++;
+                setInputValueFromHistory();
+            }
+        }
+    
+        // Функция отображения следующего значения
+        function showNextValue() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                setInputValueFromHistory();
+            } else if (historyIndex === 0) {
+                // Если historyIndex равен 0, очистите поле ввода
+                historyIndex = -1;
+                inputField.value = '';
+            }
+        }
+    
+        // Функция установки значения из истории в поле ввода
+        function setInputValueFromHistory() {
+            inputField.value = inputHistory[historyIndex];
+        }
+    
+        // Обработчик события ввода текста
+        SendMsgButtonZnach.addEventListener('click', function () {
+            // Добавление текущего значения в историю
+            inputHistory.unshift(inputField.value);
+            // Сброс индекса истории
+            historyIndex = -1;
+        });
+    });
+    </script>
+
+    </div>
+
+
+</body><div class="troywell-avia"></div><div class="troywell-caa"></div></html>
